@@ -1,0 +1,75 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+<style>
+
+	body{
+		background-color: #773caf;
+	}
+
+	
+
+	input::placeholder {
+	  color: #d3d3d3;
+	}
+
+
+	.center-column{
+		width:600px;
+		margin: 20px auto;
+		padding:20px;
+		background-color: #fff;
+		border-radius: 3px;
+		box-shadow: 6px 2px 30px 0px rgba(0,0,0,0.75);
+	}
+
+	.item-row{
+		background-color: #e278cb;
+		margin: 10px;
+		padding: 20px;
+		border-radius: 3px;
+		color: #fff;
+		font-size: 16px;
+		box-shadow: 0px -1px 10px -4px rgba(0,0,0,0.75);
+	}
+
+	.btn-danger{
+		background-color: #ffae19;
+		border-color: #e59400;
+	}
+
+</style>
+
+
+<div class="center-column">
+    <div>&ensp;
+    <label><h2>Meus jogos</h2></label> <br>
+	
+    &ensp;<a class="btn btn-sm btn-info" href="{% url 'create-game' %}">Adicionar jogo</a>
+
+	{% if request.user.is_authenticated %}
+    <a class="btn btn-sm btn-danger" href="{% url 'logout' %}">Logout</a>
+	{% else %}
+	<a class="btn btn-sm btn-danger" href="{% url 'login' %}">Login</a>
+	{% endif %}
+
+    </div>
+    
+    {% for game in games %}
+    <div class="item-row">
+        
+        {% if game.completo == True %}
+        <strike><h4>{{game}}</h4></strike> 
+        {% else %}
+        <h4>{{game}}</h4>
+        {% endif %}
+        <a class="btn btn-sm btn-info" href="{% url 'detalhe-game' game.id %}">Detalhes</a> 
+        <a class="btn btn-sm btn-info" href="{% url 'update-game' game.id %}">Atualizar</a>
+        <a class="btn btn-sm btn-danger" href="{% url 'delete-game' game.id %}">Apagar</a>
+    </div> 
+    {% endfor %}
+</div>
+
+{% endblock content %}
