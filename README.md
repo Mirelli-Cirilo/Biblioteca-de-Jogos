@@ -3,7 +3,7 @@ Aplicação onde você pode adicionar seus jogos, informar se foram finalizados 
 Com essa aplicação pude praticar a criação de sistema de registro, login e logout, autenticação de usuário e CRUD.
 
 
-#PARA CLONAR O REPOSITÓRIO:
+# PARA CLONAR O REPOSITÓRIO:
 use o comando - "git clone https://github.com/Mirelli-Cirilo/Biblioteca-de-Jogos.git"
 
 depois entre na pasta do projeto - "cd gamelist"
